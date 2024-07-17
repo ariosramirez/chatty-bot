@@ -1,0 +1,25 @@
+
+services:
+  rasa:
+    image: khalosa/rasa-aarch64:3.5.2
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./rasa:/app
+    command:
+      - run
+      - "--enable-api"
+      - "--cors"
+      - "*"
+
+  flask:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - rasa
+    volumes:
+      - .:/app
+    environment:
+      - RASA_SERVER=http://rasa:5005
+    command: ["flask", "run", "--host=0.0.0.0"]

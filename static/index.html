@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ChattyBot Interface</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #chatbox { width: 80%; margin: 0 auto; }
+        #messages { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
+        #input { width: 80%; }
+        button { padding: 10px; }
+    </style>
+</head>
+<body>
+    <div id="chatbox">
+        <h1>Chat with ChattyBot</h1>
+        <div id="messages"></div>
+        <input type="text" id="input" placeholder="Type your message here..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('input');
+            const message = input.value;
+            if (!message) return;
+
+            // Add user message to chatbox
+            const messagesDiv = document.getElementById('messages');
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.textContent = `You: ${message}`;
+            messagesDiv.appendChild(userMessageDiv);
+
+            // Send message to Flask server
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            });
+
+            const data = await response.json();
+            const botMessage = data[0] && data[0].text ? data[0].text : 'Sorry, I did not understand that.';
+
+            // Add bot response to chatbox
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.textContent = `ChattyBot: ${botMessage}`;
+            messagesDiv.appendChild(botMessageDiv);
+
+            // Clear input
+            input.value = '';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
