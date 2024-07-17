@@ -1,0 +1,32 @@
+version: "3.1"
+
+rules:
+- rule: greet
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: inquire materials
+  steps:
+  - intent: inquire_materials
+  - action: utter_inquire_materials
+
+- rule: place order
+  steps:
+  - intent: place_order
+  - action: utter_place_order
+
+- rule: request quote
+  steps:
+  - intent: request_quote
+  - action: utter_request_quote
+
+- rule: specify measurement
+  steps:
+  - intent: specify_measurement
+  - action: utter_specify_measurement

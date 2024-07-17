@@ -1,0 +1,40 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - inquire_materials
+  - place_order
+  - request_quote
+  - specify_measurement
+
+responses:
+  utter_greet:
+  - text: "Hola! ¿En qué puedo ayudarte con tus necesidades de construcción?"
+
+  utter_goodbye:
+  - text: "Adiós, ¡que tengas un buen día!"
+
+  utter_affirm:
+  - text: "¡Entendido!"
+
+  utter_deny:
+  - text: "Está bien, ¿cómo puedo ayudarte entonces?"
+
+  utter_inquire_materials:
+  - text: "Tenemos una amplia variedad de materiales de construcción, incluyendo cemento, ladrillos, arena, grava, yeso, y varillas de acero."
+
+  utter_place_order:
+  - text: "Puedes realizar un pedido de cualquier material de construcción. ¿Qué te gustaría ordenar?"
+
+  utter_request_quote:
+  - text: "Claro, ¿para qué tipo de portón necesitas la cotización?"
+
+  utter_specify_measurement:
+  - text: "Entendido, por favor proporciona las medidas necesarias."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

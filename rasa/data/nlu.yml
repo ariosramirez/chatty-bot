@@ -1,0 +1,54 @@
+version: "3.1"
+
+nlu:
+- intent: inquire_materials
+  examples: |
+    - ¿Qué materiales de construcción tienen?
+    - Necesito información sobre materiales para construcción.
+    - ¿Venden cemento y ladrillos?
+    - ¿Tienen arena para construcción?
+    - ¿Qué tipos de ladrillos tienen?
+    - ¿Hay disponibilidad de cemento Portland?
+    - ¿Puedo comprar yeso?
+    - Necesito saber si tienen grava y arena fina.
+    - ¿Qué materiales recomendados tienen para una construcción resistente?
+    - ¿Tienen disponibilidad de varillas de acero?
+
+- intent: place_order
+  examples: |
+    - Quisiera hacer un pedido de arena y cemento.
+    - Necesito comprar ladrillos y cemento.
+    - ¿Puedo ordenar 50 sacos de cemento?
+    - Necesito realizar un pedido de grava.
+    - Quisiera comprar 100 ladrillos.
+    - ¿Pueden enviarme 30 sacos de yeso?
+    - Quisiera ordenar materiales para la construcción de una casa.
+    - ¿Cómo puedo hacer un pedido grande de cemento y arena?
+    - Necesito materiales para empezar una obra.
+    - ¿Cómo puedo comprar varillas de acero a granel?
+
+- intent: request_quote
+  examples: |
+    - Necesito cotizar un portón
+    - Quisiera saber el precio de un portón
+    - ¿Cuánto cuesta un portón?
+    - ¿Me pueden cotizar un portón?
+    - ¿Cuál es el precio de un portón de acero?
+    - Necesito saber el costo de un portón
+    - Quisiera cotizar un portón de madera
+    - ¿Tienen precios de portones?
+    - ¿Pueden darme una cotización para un portón?
+    - ¿Me pueden enviar una cotización para un portón?
+
+- intent: specify_measurement
+  examples: |
+    - Mide 2 metros de alto
+    - Mide 3 metros de ancho
+    - Tiene una longitud de 5 metros
+    - La altura es de 4 metros
+    - El ancho es de 6 metros
+    - La longitud total es de 10 metros
+    - El portón mide 2.5 metros de alto
+    - La puerta tiene una altura de 3.5 metros
+    - El muro mide 4 metros de largo
+    - La pared tiene una longitud de 7 metros
