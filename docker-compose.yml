@@ -1,9 +1,11 @@
 
 services:
   rasa:
-    image: khalosa/rasa-aarch64:3.5.2
+    build:
+      dockerfile: rasabot.Dockerfile
     ports:
       - "5005:5005"
+      - "5055:5055"
     volumes:
       - ./rasa:/app
     command:

@@ -1,33 +1,28 @@
-# Use an official Python runtime as a parent image
-FROM python:3.10
+# Use the base image with nonroot user setup
+FROM khalosa/rasa-aarch64:3.5.2
+# From: https://github.com/khalo-sa/rasa-apple-silicon/blob/main/Dockerfile
 
 LABEL authors="andresrios"
 
-# Set the working directory in the container
+# Switch to root user
+USER root
+
+# Set working directory
 WORKDIR /app
 
-# Install build tools and dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libssl-dev \
-    libffi-dev \
-    python3-dev \
-    libyaml-dev \
-    gcc \
-    libc-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Copy the necessary files into the container
+COPY ./rasa /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Ensure you have spaCy installed and the Spanish language model downloaded
+RUN pip install spacy
+RUN python -m spacy download es_core_news_md
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Train the Rasa model
+RUN rasa train
 
-# Expose the necessary port
-EXPOSE 5000
+# Expose Rasa server and action server ports
+EXPOSE 5005 5055
 
-# Define environment variable
-ENV FLASK_APP=app.py
+USER rasa
 
-# Run app.py when the container launches
-CMD ["flask", "run", "--host=0.0.0.0", "--debug"]
+ENTRYPOINT ["rasa"]
